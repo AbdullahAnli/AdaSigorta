@@ -1,12 +1,11 @@
 package com.AdaSigorta.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Customer {
@@ -22,6 +21,8 @@ public class Customer {
     private String il;
     private String ilce;
     private LocalDate dogumTarihi;
+
+
 
 
     public Customer(){}
