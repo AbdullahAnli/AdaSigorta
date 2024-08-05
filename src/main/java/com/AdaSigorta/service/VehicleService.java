@@ -31,9 +31,10 @@ public class VehicleService {
     public void deleteVehicle(Long id){
         vehicleRepository.deleteById(id);
     }
-    public List<Vehicle> searchVehicle(String plateCode, String vehicleBrand, String vehicleModel) {
-        return vehicleRepository.searchVehicle(plateCode, vehicleBrand, vehicleModel);
+    public List<Vehicle> searchVehicle(String vehicleBrand, String vehicleModel, Integer vehicleModelYear) {
+        return vehicleRepository.searchVehicle(vehicleBrand, vehicleModel, vehicleModelYear);
     }
+
 
 
 }

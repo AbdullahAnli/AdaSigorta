@@ -28,15 +28,10 @@ public class PolicyService {
     @Autowired
     private PolicyRepository policyRepository;
 
-    public Policy createPolicy(Long customerId, Long vehicleId, Policy policy) {
-        Customer customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-        Vehicle vehicle = vehicleRepository.findById(vehicleId)
-                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
-
-        policy.setCustomer(customer);
-        policy.setVehicle(vehicle);
-
+    public Policy createPolicy( Policy policy) {
+        policy.setPolicyNo(generatePolicyNo());
+        policy.setCreatedAt(LocalDateTime.now());
+        policy.setStatus(PolicyStatus.TEKLIF);
         return policyRepository.save(policy);
     }
 

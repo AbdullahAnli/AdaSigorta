@@ -45,11 +45,13 @@ public class VehicleController {
 
     @GetMapping("/search")
     public List<Vehicle> searchVehicles(
-            @RequestParam(required = false) String plateCode,
+
             @RequestParam(required = false) String vehicleBrand,
-            @RequestParam(required = false) String vehicleModel) {
-        return vehicleService.searchVehicle(plateCode, vehicleBrand, vehicleModel);
+            @RequestParam(required = false) String vehicleModel,
+            @RequestParam(required = false) Integer vehicleModelYear) {
+        return vehicleService.searchVehicle(vehicleBrand, vehicleModel, vehicleModelYear);
     }
+
 
 }
 

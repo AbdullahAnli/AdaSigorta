@@ -8,6 +8,7 @@ import com.AdaSigorta.service.CustomerService;
 import com.AdaSigorta.service.PolicyService;
 import jakarta.persistence.PostPersist;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -28,18 +29,28 @@ public class PolicyController {
     private CustomerService customerService;
 
     @PostMapping("/create")
-    public ResponseEntity<Policy> createPolicy(@RequestBody PolicyRequest policyRequest) {
-        Policy createdPolicy = policyService.createPolicy(
-                policyRequest.getCustomerId(),
-                policyRequest.getVehicleId(),
-                policyRequest.getPolicy()
-        );
-        return ResponseEntity.ok(createdPolicy);
+    public ResponseEntity<Policy> createPolicy(@RequestBody Policy policy) {
+        try {
+            Policy createdPolicy = policyService.createPolicy(policy);
+            return new ResponseEntity<>(createdPolicy, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @GetMapping("all")
-    public ResponseEntity<List<Policy>> getAllPolicy(){
-        return ResponseEntity.ok(policyService.getAllPolicies());
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllPolicy() {
+        try {
+            List<Policy> policies = policyService.getAllPolicies();
+            if (policies == null || policies.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(policies);
+        } catch (Exception e) {
+            // Loglama yapılabilir
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while fetching policies");
+        }
     }
 
     @GetMapping("/{policyNo}")
