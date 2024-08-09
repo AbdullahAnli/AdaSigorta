@@ -35,16 +35,15 @@ public class Policy {
     public Policy() {
     }
 
-    public Policy(Long id, Customer customer, Vehicle vehicle,
-                  Long policyNo, PolicyStatus status,
+    public Policy( Customer customer, Vehicle vehicle,
                   Integer branchCode, Double prim, LocalDateTime createdAt,
                   LocalDateTime approvedAt, LocalDateTime startDate, LocalDateTime endDate) {
-        this.id = id;
+
         this.customer = customer;
         this.vehicle = vehicle;
-        this.policyNo = policyNo;
 
-        this.status = status;
+
+
         this.branchCode = branchCode;
         this.prim = prim;
         this.createdAt = createdAt;

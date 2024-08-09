@@ -1,79 +1,32 @@
-package com.AdaSigorta.entity;
-
-import jakarta.persistence.*;
+package com.AdaSigorta.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-@Entity
-public class Payment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PaymentDTO {
     private Long id;
-
-
     private Long policyNo;
-    private  double amount;
+    private double amount;
     private LocalDateTime paymentDate;
     private String cardNumber;
     private String cardHolderName;
     private String expirationDate;
     private String cvv;
 
-    @ManyToOne
-    private Policy policy;
-
-
-
-    public Payment(){}
-
-
-
-    public Payment(Long id,  double amount, LocalDateTime paymentDate, String cardNumber,
-                   String cardHolderName, String expirationDate, String cvv) {
-
-
-        this.id = id;
-        this.amount = amount;
-        this.paymentDate = paymentDate;
-        this.cardNumber = cardNumber;
-        this.cardHolderName = cardHolderName;
-        this.expirationDate = expirationDate;
-        this.cvv = cvv;
-
-    }
-    public Long getPolicyNo() {
-        if (policy != null) {
-            return policy.getPolicyNo();
-        }
-        return null; // Eğer policy null ise, null döndür.
-    }
-
-    public void setPolicyNo(Long policyNo) {
-        this.policyNo = policyNo;
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-    public Long getId() {
-        return id;
+
+    public Long getPolicyNo() {
+        return policyNo;
     }
 
-    public LocalDateTime getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(LocalDateTime paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public Policy getPolicy() {
-        return policy;
-    }
-
-    public void setPolicy(Policy policy) {
-        this.policy = policy;
+    public void setPolicyNo(Long policyNo) {
+        this.policyNo = policyNo;
     }
 
     public double getAmount() {
@@ -82,6 +35,14 @@ public class Payment {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public LocalDateTime getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(LocalDateTime paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
     public String getCardNumber() {
@@ -116,3 +77,4 @@ public class Payment {
         this.cvv = cvv;
     }
 }
+

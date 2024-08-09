@@ -1,16 +1,12 @@
 package com.AdaSigorta.controller;
 
-import com.AdaSigorta.dto.PolicyRequest;
 import com.AdaSigorta.entity.Customer;
 import com.AdaSigorta.entity.Policy;
-import com.AdaSigorta.repository.PolicyRepository;
 import com.AdaSigorta.service.CustomerService;
 import com.AdaSigorta.service.PolicyService;
-import jakarta.persistence.PostPersist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -113,6 +109,7 @@ public class PolicyController {
                     policyMap.put("startDate", policy.getStartDate());
                     policyMap.put("endDate", policy.getEndDate());
                     policyMap.put("prim", policy.getPrim());
+                    policyMap.put("branch code",policy.getBranchCode());
                     // Diğer gerekli alanları ekleyin
                     return policyMap;
                 })

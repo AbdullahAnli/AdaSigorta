@@ -35,6 +35,9 @@ public class PolicyService {
         return policyRepository.save(policy);
     }
 
+    public Policy savePolicy(Policy policy){
+        return policyRepository.save(policy);
+    }
 
     public Policy getPolicy(Long policyNo){
         return policyRepository.findByPolicyNo(policyNo);
