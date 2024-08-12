@@ -1,23 +1,15 @@
 package com.AdaSigorta.entity;
-
 import jakarta.persistence.*;
-
-
 @Entity
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true, nullable = false)
     private String username;
     @Column(nullable = false)
     private String password;
     private String email;
-
-    // Getter ve Setter metodları buraya gelmeli
-
 
     public Long getId() {
         return id;

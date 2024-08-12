@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/customers")
+
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
@@ -39,9 +41,10 @@ public class CustomerController {
     public List<Customer>getCustomerByName(@PathVariable String name){
         return customerService.getCustomerByName(name);
     }
-    @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer){
-        return customerService.saveCustomer(customer);
+    @PostMapping("/create")
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+        Customer savedCustomer = customerService.saveCustomer(customer);
+        return ResponseEntity.status(201).body(savedCustomer);
     }
     @PutMapping("/{id}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customerDetails){
