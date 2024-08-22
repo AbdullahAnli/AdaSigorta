@@ -12,8 +12,6 @@ public class Policy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -22,7 +20,6 @@ public class Policy {
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
     private Long policyNo;
-
     private PolicyStatus status;
     private Integer branchCode;
     private Double prim;

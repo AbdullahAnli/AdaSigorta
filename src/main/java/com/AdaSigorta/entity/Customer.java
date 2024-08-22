@@ -14,7 +14,6 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String surname;
     private String tcKimlikNo;
@@ -24,10 +23,9 @@ public class Customer {
     private String ilce;
     private LocalDate dogumTarihi;
 
+    public Customer() {
+    }
 
-
-
-    public Customer(){}
     public Customer(Long id, String name, String surname,
                     String tcKimlikNo, String telNo,
                     String email, String il, String ilce,
@@ -42,7 +40,6 @@ public class Customer {
         this.ilce = ilce;
         this.dogumTarihi = dogumTarihi;
     }
-
     public Long getId() {
         return id;
     }

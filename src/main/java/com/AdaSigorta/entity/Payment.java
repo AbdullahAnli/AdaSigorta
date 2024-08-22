@@ -11,7 +11,6 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private Long policyNo;
     private  double amount;
     private LocalDateTime paymentDate;
@@ -19,20 +18,11 @@ public class Payment {
     private String cardHolderName;
     private String expirationDate;
     private String cvv;
-
     @ManyToOne
     private Policy policy;
-
-
-
     public Payment(){}
-
-
-
     public Payment(Long id,  double amount, LocalDateTime paymentDate, String cardNumber,
                    String cardHolderName, String expirationDate, String cvv) {
-
-
         this.id = id;
         this.amount = amount;
         this.paymentDate = paymentDate;
@@ -40,13 +30,12 @@ public class Payment {
         this.cardHolderName = cardHolderName;
         this.expirationDate = expirationDate;
         this.cvv = cvv;
-
     }
     public Long getPolicyNo() {
         if (policy != null) {
             return policy.getPolicyNo();
         }
-        return null; // Eğer policy null ise, null döndür.
+        return null;
     }
 
     public void setPolicyNo(Long policyNo) {

@@ -21,13 +21,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/payment")
 public class PaymentController {
-
     @Autowired
     private PolicyService policyService;
-
     @Autowired
     private PaymentService paymentService;
-
     @PostMapping
     public ResponseEntity<String> pay(@RequestBody PaymentRequest paymentRequest) {
         try {

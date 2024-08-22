@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 public class PolicyController {
     @Autowired
     private PolicyService policyService;
-
     @Autowired
     private CustomerService customerService;
 
@@ -91,14 +90,11 @@ public class PolicyController {
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<Map<String, Object>>> getPoliciesByCustomer(@PathVariable Long customerId) {
         Optional<Customer> optionalCustomer = customerService.getCustomerById(customerId);
-
         if (optionalCustomer.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
         Customer customer = optionalCustomer.get();
         List<Policy> policies = policyService.getPoliciesByCustomer(customer);
-
         List<Map<String, Object>> response = policies.stream()
                 .map(policy -> {
                     Map<String, Object> policyMap = new HashMap<>();

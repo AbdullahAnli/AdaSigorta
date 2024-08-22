@@ -19,52 +19,35 @@ import java.util.stream.Collectors;
 public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
-
     @Autowired
     private PolicyRepository policyRepository;
-
     @Autowired
     private PolicyService policyService;
 
     public boolean processPayment(PaymentRequest paymentRequest) {
         return true;
     }
-
-
     public Optional<Payment> getPayment(Long policyNo) {
         return paymentRepository.findByPolicy_PolicyNo(policyNo);
     }
-
-
-
-
 
     public Payment recordPayment(PaymentRequest paymentRequest) {
         Policy policy = policyService.getPolicy(paymentRequest.getPolicyNo());
         if (policy == null) {
             throw new RuntimeException("Policy not found for policyNo: " + paymentRequest.getPolicyNo());
         }
-
         Payment payment = new Payment();
         payment.setPolicyNo(policy.getPolicyNo());
         payment.setAmount(paymentRequest.getAmount());
         payment.setPaymentDate(LocalDateTime.now());
-
         payment.setCardNumber(paymentRequest.getCardNumber());
         payment.setCardHolderName(paymentRequest.getCardHolderName());
         payment.setExpirationDate(paymentRequest.getExpiryDate());
         payment.setCvv(paymentRequest.getCvv());
-
         payment.setPolicy(policy);
-
         Payment savedPayment = paymentRepository.save(payment);
-
-
-
         return savedPayment;
     }
-
-
     public List<Payment>searchPayment(Double minAmount, Double maxAmount, LocalDate startDate,
                                       LocalDate endDate){
         List<Payment>allPayments=paymentRepository.findAll();

@@ -1,6 +1,4 @@
 package com.AdaSigorta.service;
-
-
 import com.AdaSigorta.entity.Customer;
 import com.AdaSigorta.entity.Policy;
 import com.AdaSigorta.entity.Vehicle;
@@ -16,15 +14,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-
 @Service
 public class PolicyService {
     @Autowired
     private CustomerRepository customerRepository;
-
     @Autowired
     private VehicleRepository vehicleRepository;
-
     @Autowired
     private PolicyRepository policyRepository;
 

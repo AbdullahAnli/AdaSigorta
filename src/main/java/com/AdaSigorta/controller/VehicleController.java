@@ -1,5 +1,4 @@
 package com.AdaSigorta.controller;
-
 import com.AdaSigorta.entity.Vehicle;
 import com.AdaSigorta.repository.VehicleRepository;
 import com.AdaSigorta.service.VehicleService;
@@ -9,13 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/vehicle")
 public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
-
     @PostMapping
     public ResponseEntity<Vehicle>saveVehicle(@RequestBody Vehicle vehicle){
         return ResponseEntity.ok(vehicleService.saveVehicle(vehicle));
